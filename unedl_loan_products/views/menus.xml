@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    
+    <menuitem
+        id="unedl_loan_menu_root"
+        name="Préstamos UNEDL"
+        sequence="10"/>
+
+    <menuitem
+        id="unedl_loan_menu"
+        name="Préstamos UNEDL"
+        action="unedl_loan_action"
+        parent="unedl_loan_menu_root"
+        sequence="10"/>
+
+</odoo>

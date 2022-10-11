@@ -1,2 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_unedl_loan_products_unedl_loan_products,unedl_loan_products.unedl_loan_products,model_unedl_loan_products_unedl_loan_products,base.group_user,1,1,1,1
+access_unedl_loan,access_unedl_loan,model_unedl_loan,,1,1,1,1
+access_unedl_loan_products,access_unedl_loan_products,model_unedl_loan_products,,1,1,1,1
