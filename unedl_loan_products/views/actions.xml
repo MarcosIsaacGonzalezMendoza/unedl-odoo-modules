@@ -9,5 +9,6 @@
                 Presiona crear para iniciar el registro de un préstamo
             </p>
         </field>
+        <field name="context">{"default_state": "draft"}</field>
     </record>
 </odoo>

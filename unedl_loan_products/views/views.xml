@@ -1,44 +1,82 @@
+<?xml version='1.0' encoding='utf-8'?>
 <odoo>
-  <data>
-    
+      
     <record id="unedl_loan_view_tree" model="ir.ui.view">
-      <field name="name">unedl.loan.view.tree</field>
-      <field name="model">unedl.loan</field>
-      <field name="arch" type="xml">
-        <tree string="Prestamos">
-          <field name="name" />
-          <field name="partner_id" />
-          
-        </tree>
-      </field>
-    </record>
-
-    <record id="unedl_loan_view_form" model="ir.ui.view">
-      <field name="name">unedl.loan.view.form</field>
-      <field name="model">unedl.loan</field>
-      <field name="arch" type="xml">
-        <form string="PRestamos">
-          <sheet>
-            <group string="Datos de préstamos">
-              <group name="left_column">
+        <field name="name">unedl.loan.view.tree</field>
+        <field name="model">unedl.loan</field>
+        <field name="arch" type="xml">
+            <tree string="Prestamos">
+                <field name="name" />
                 <field name="partner_id" />
-              </group>
-              <group name="right_column">
-                <field name="create_date" string="Fecha de creación" />
-              </group>
-              <field name="product_ids">
-                <tree editable="top">
-                  <field name="product_id" />
-                </tree>
-              </field>
-            </group>
-            <group>
-              <field name="comments" />
-            </group>
-          </sheet>
-        </form>
-      </field>
+                <field name="state" 
+                    widget="badge" 
+                    decoration-info="state == 'draft'"
+                    decoration-danger="state == 'missing'"
+                    decoration-warning="state == 'process'"
+                    decoration-success="state == 'delivered'"/>
+            </tree>
+        </field>
     </record>
-
-  </data>
-</odoo>
+  
+    <record id="unedl_loan_view_form" model="ir.ui.view">
+        <field name="name">unedl.loan.view.form</field>
+        <field name="model">unedl.loan</field>
+        <field name="arch" type="xml">
+            <form string="Prestamos">
+                <header>
+                    <field name="state" widget="statusbar"/>
+                    <button 
+                        name="start_loan_process" 
+                        type="object" 
+                        string="Iniciar préstamo" 
+                        class="oe_highlight o_wow"
+                        icon="fa-clipboard"
+                        attrs="{'invisible': [('state', '!=', 'draft')]}"
+                        />
+                    <button 
+                        name="end_loan_process" 
+                        type="object" 
+                        string="Terminar préstamo" 
+                        class="oe_highlight o_wow" 
+                        icon="fa-thumbs-up"
+                        attrs="{'invisible': [('state', '!=', 'process')]}"
+                        />
+                    <button 
+                        name="declare_missing_loan" 
+                        type="object" 
+                        string="Declarar préstamo perdido" 
+                        class="oe_highlight o_wow" 
+                        icon="fa-ban"
+                        attrs="{'invisible': [('state', '!=', 'process')]}"
+                        />
+                </header>
+                <sheet>
+                    <span>
+                        <h1>FOLIO <field name="name" style="color:purple;" readonly="1"/></h1>
+                    </span>
+                    <field name="partner_image" widget="image" class="oe_avatar"/>
+                    <group string="Datos de préstamos">
+                        <group name="left_column">
+                            <field name="partner_id" />
+                        </group>
+                        <group name="right_column">
+                            <field name="create_date" string="Fecha de creación" />
+                        </group>
+                        <field name="product_ids">
+                        <tree editable="top">
+                            <field name="product_id" />
+                        </tree>
+                        </field>
+                    </group>
+                    <group>
+                        <field name="comments" />
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+  </odoo>

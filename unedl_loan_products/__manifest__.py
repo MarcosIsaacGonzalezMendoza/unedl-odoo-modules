@@ -20,13 +20,14 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','stock'],
+    'depends': ['base','stock','contacts'],
 
     # always loaded
     'data': [
         'security/ir.model.access.csv',
         'views/views.xml',
         'views/actions.xml',
-        'views/menus.xml'
+        'views/menus.xml',
+        'views/foliator.xml'
     ]
 }

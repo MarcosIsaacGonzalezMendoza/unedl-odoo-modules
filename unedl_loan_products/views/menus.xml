@@ -13,4 +13,31 @@
         parent="unedl_loan_menu_root"
         sequence="10"/>
 
+    <menuitem
+        id="product_template_menu"
+        name="Productos"
+        action="stock.product_template_action_product"
+        parent="unedl_loan_menu_root"
+        sequence="20"/>
+
+    <menuitem
+        id="model_name_menu"
+        name="Jefes de grupo"
+        action="contacts.action_contacts"
+        parent="unedl_loan_menu_root"
+        sequence="30"/>
+    
+    <menuitem
+        id="config_menu_root"
+        name="Configuración"
+        parent="unedl_loan_menu_root"
+        sequence="40"/>
+
+    <menuitem
+        id="product_category_menu"
+        name="Categoría"
+        action="product.product_category_action_form"
+        parent="config_menu_root"
+        sequence="10"/>
+
 </odoo>
