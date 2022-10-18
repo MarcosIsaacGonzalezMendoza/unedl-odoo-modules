@@ -65,6 +65,9 @@
                         <field name="product_ids">
                         <tree editable="top">
                             <field name="product_id" />
+                            <field name="available_quantity" />
+                            <field name="loan_quantity" />
+                            <field name="returned_quantity" />
                         </tree>
                         </field>
                     </group>

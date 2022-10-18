@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from odoo import models, fields
+from odoo import models, fields, api
 
 class UnedlLoanProducts(models.Model):
     _name = 'unedl.loan.products'
@@ -11,6 +11,16 @@ class UnedlLoanProducts(models.Model):
     loan_product_id = fields.Many2one(
         comodel_name='unedl.loan', 
         string='Folio de prestamo')
+    loan_quantity = fields.Float(
+        string='Cantidad prestada')
+    returned_quantity = fields.Float(
+        string='Cantidad devuelta')
+    
+    # related
+    available_quantity = fields.Float(
+        string='Cantidad disponible',
+        related='product_id.qty_available')
+    
     
     
     
