@@ -16,10 +16,10 @@ class UnedlLoan(models.Model):
     partner_id = fields.Many2one(
         comodel_name='res.partner', 
         string='Jefe de grupo')
-    product_ids = fields.One2many(
+    line_ids = fields.One2many(
         comodel_name='unedl.loan.products', 
         inverse_name='loan_product_id', 
-        string='Productos a prestamo')
+        string='Líneas a prestamo')
     comments = fields.Text(string='Comentarios')
 
     # related_fields

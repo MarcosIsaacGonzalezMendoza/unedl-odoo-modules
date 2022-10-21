@@ -40,14 +40,10 @@
                         class="oe_highlight o_wow" 
                         icon="fa-thumbs-up"
                         attrs="{'invisible': [('state', '!=', 'process')]}"
-                        />
-                    <button 
-                        name="declare_missing_loan" 
-                        type="object" 
-                        string="Declarar préstamo perdido" 
-                        class="oe_highlight o_wow" 
-                        icon="fa-ban"
-                        attrs="{'invisible': [('state', '!=', 'process')]}"
+                        confirm="
+                            Verifica que la cantidad de piezas devueltas sea la correcta,
+                            ¿Estás seguro?
+                        "
                         />
                 </header>
                 <sheet>
@@ -62,7 +58,7 @@
                         <group name="right_column">
                             <field name="create_date" string="Fecha de creación" />
                         </group>
-                        <field name="product_ids">
+                        <field name="line_ids">
                         <tree editable="top">
                             <field name="product_id" />
                             <field name="available_quantity" />
