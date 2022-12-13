@@ -1,3 +1,6 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_unedl_loan,access_unedl_loan,model_unedl_loan,,1,1,1,1
-access_unedl_loan_products,access_unedl_loan_products,model_unedl_loan_products,,1,1,1,1
+access_unedl_loan,access_unedl_loan,model_unedl_loan,group_administrator,1,1,1,1
+access_unedl_loan_products,access_unedl_loan_products,model_unedl_loan_products,group_administrator,1,1,1,1
+
+access_unedl_loan_prefectos,access_unedl_loan_prefectos,model_unedl_loan,group_prefecto,1,1,1,0
+access_unedl_loan_products_prefectos,access_unedl_loan_products_prefectos,model_unedl_loan_products,group_prefecto,1,1,1,0

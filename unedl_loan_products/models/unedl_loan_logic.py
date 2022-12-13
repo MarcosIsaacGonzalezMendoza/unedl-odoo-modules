@@ -1,10 +1,29 @@
 # -*- coding: utf-8 -*-
 
-from odoo import models, fields
+from odoo import models, api
+from odoo.exceptions import UserError
 from ..settings import *
 
 class UnedlLoan(models.Model):
     _inherit = 'unedl.loan'
+
+    @api.constrains('state')
+    def _constrains_state(self):
+        for record in self:
+            if any(item.loan_quantity < 0 for item in record.line_ids):
+                raise UserError("No es posible guardar un préstamo con piezas negativas")
+
+            if any(item.loan_quantity > item.available_quantity for item in record.line_ids):
+                raise UserError("No es posible guardar un préstamo con piezas mayores a las disponibles")
+
+            if record.state == PROCESS:
+                if any(item.loan_quantity == 0 for item in record.line_ids):
+                    raise UserError("Para continuar a proceso debes seleccionar al menos una pieza a préstamo")
+
+    @api.constrains('line_ids')
+    def _constrains_line_ids(self):
+        if len(self.line_ids) == 0:
+            raise UserError("Para continuar con el formulario debes tener almenos un producto a préstamo")
 
     def start_loan_process(self):
         self.discount_inventory_items()

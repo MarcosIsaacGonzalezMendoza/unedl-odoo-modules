@@ -53,22 +53,22 @@
                     <field name="partner_image" widget="image" class="oe_avatar"/>
                     <group string="Datos de préstamos">
                         <group name="left_column">
-                            <field name="partner_id" />
+                            <field name="partner_id" required="1" options="{'no_open':True, 'no_create':True}" attrs="{'readonly':[('state', 'not in', ('draft'))]}"/>
                         </group>
                         <group name="right_column">
                             <field name="create_date" string="Fecha de creación" />
                         </group>
-                        <field name="line_ids">
-                        <tree editable="top">
-                            <field name="product_id" />
-                            <field name="available_quantity" />
-                            <field name="loan_quantity" />
-                            <field name="returned_quantity" />
-                        </tree>
+                        <field name="line_ids" attrs="{'readonly':[('state', 'in', ('missing','delivered'))]}">
+                            <tree editable="top">
+                                <field name="product_id" options="{'no_open':True, 'no_create':True}" attrs="{'readonly':[('parent.state', 'not in', ('draft'))]}"/>
+                                <field name="available_quantity" />
+                                <field name="loan_quantity" attrs="{'readonly':[('parent.state', 'not in', ('draft'))]}"/>
+                                <field name="returned_quantity" attrs="{'column_invisible':[('parent.state','in','draft')],'readonly':[('parent.state', 'not in', ('process'))]}" />
+                            </tree>
                         </field>
                     </group>
                     <group>
-                        <field name="comments" />
+                        <field name="comments" required="1" attrs="{'readonly':[('state', 'not in', ('draft'))]}"/>
                     </group>
                 </sheet>
                 <div class="oe_chatter">

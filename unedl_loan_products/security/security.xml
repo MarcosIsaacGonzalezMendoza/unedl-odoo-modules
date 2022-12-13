@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.module.category" id="role_group_control">
+            <field name="name">Rol</field>
+            <field name="description">Selecciona el rol de usuario</field>
+            <field name="sequence">1</field>
+        </record>
+
+        <record id="group_prefecto" model="res.groups">
+            <field name="name">prefecto</field>
+            <field name="category_id" ref="role_group_control"/>
+        </record>
+
+        <record id="group_administrator" model="res.groups">
+            <field name="name">Administrador</field>
+            <field name="category_id" ref="role_group_control"/>
+            <field name="implied_ids" eval="[(4, ref('group_prefecto'))]"/>
+            <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+        </record>
+</odoo>
