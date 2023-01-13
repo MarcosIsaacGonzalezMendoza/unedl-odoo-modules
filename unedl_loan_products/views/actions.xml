@@ -11,4 +11,26 @@
         </field>
         <field name="context">{"default_state": "draft"}</field>
     </record>
+
+    <record id="group_leader_action" model="ir.actions.act_window">
+        <field name="name">Jefe de grupo</field>
+        <field name="res_model">group.leader</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Presiona crear para iniciar el registro de un jefe de grupo
+            </p>
+        </field>
+    </record>
+
+    <record id="unedl_products_action" model="ir.actions.act_window">
+        <field name="name">Productos unedl</field>
+        <field name="res_model">unedl.products</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Presiona crear para iniciar el registro de un producto
+            </p>
+        </field>
+    </record>
 </odoo>

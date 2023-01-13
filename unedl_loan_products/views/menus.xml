@@ -18,7 +18,7 @@
     <menuitem
         id="product_template_menu"
         name="Productos"
-        action="stock.product_template_action_product"
+        action="unedl_products_action"
         parent="unedl_loan_menu_root"
         sequence="20"
         groups="group_administrator"/>
@@ -26,7 +26,7 @@
     <menuitem
         id="model_name_menu"
         name="Jefes de grupo"
-        action="contacts.action_contacts"
+        action="group_leader_action"
         parent="unedl_loan_menu_root"
         sequence="30"
         groups="group_administrator"/>
@@ -37,12 +37,5 @@
         parent="unedl_loan_menu_root"
         sequence="40"
         groups="group_administrator"/>
-
-    <!-- <menuitem
-        id="product_category_menu"
-        name="Categoría"
-        action="product.product_category_action_form"
-        parent="config_menu_root"
-        sequence="10"/> -->
 
 </odoo>

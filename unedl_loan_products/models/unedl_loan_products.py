@@ -6,7 +6,7 @@ class UnedlLoanProducts(models.Model):
     _name = 'unedl.loan.products'
 
     product_id = fields.Many2one(
-        comodel_name='product.template', 
+        comodel_name='unedl.products', 
         string='Producto')
     loan_product_id = fields.Many2one(
         comodel_name='unedl.loan', 
@@ -19,7 +19,7 @@ class UnedlLoanProducts(models.Model):
     # related
     available_quantity = fields.Float(
         string='Cantidad disponible',
-        related='product_id.qty_available')
+        related='product_id.quantity_available')
     
     
     

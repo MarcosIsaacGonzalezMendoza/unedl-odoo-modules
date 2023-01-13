@@ -15,7 +15,7 @@ class UnedlLoan(models.Model):
         selection=LOAN_STATE,
         tracking=True)
     partner_id = fields.Many2one(
-        comodel_name='res.partner', 
+        comodel_name='group.leader', 
         string='Jefe de grupo')
     line_ids = fields.One2many(
         comodel_name='unedl.loan.products', 
@@ -28,5 +28,5 @@ class UnedlLoan(models.Model):
     # related_fields
     partner_image = fields.Binary(
         string='Jefe de grupo',
-        related='partner_id.image_1920')
+        related='partner_id.photo')
     

@@ -52,16 +52,10 @@ class UnedlLoan(models.Model):
 
     def discount_inventory_items(self):
         for record in self:
-            warehouse = self.env['stock.warehouse'].search([('company_id', '=', record.env.user.company_id.id)], limit=1)
             for line in record.line_ids:
-                qty_available = (line.available_quantity - line.loan_quantity) * -1
-                qty_available_total = (qty_available + line.available_quantity) * -1
-                self.env['stock.quant']._update_available_quantity(line.product_id.product_variant_id, warehouse.lot_stock_id, qty_available_total)
+                line.product_id.quantity_available  = line.product_id.quantity_available - line.loan_quantity
 
     def add_inventory_items(self):
         for record in self:
-            warehouse = self.env['stock.warehouse'].search([('company_id', '=', record.env.user.company_id.id)], limit=1)
             for line in record.line_ids:
-                qty_available = (line.available_quantity - line.returned_quantity) * -1
-                qty_available_total = (qty_available + line.available_quantity)
-                self.env['stock.quant']._update_available_quantity(line.product_id.product_variant_id, warehouse.lot_stock_id, qty_available_total)
+                line.product_id.quantity_available = line.product_id.quantity_available + line.returned_quantity
