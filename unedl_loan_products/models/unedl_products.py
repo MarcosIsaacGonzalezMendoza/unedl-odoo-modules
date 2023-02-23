@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from odoo import models, fields
+from odoo import models, fields,api
+from odoo.exceptions import UserError
+from .check_data import *
 
 class UnedlProducts(models.Model):
     _name = 'unedl.products'

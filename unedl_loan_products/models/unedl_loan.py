@@ -29,4 +29,8 @@ class UnedlLoan(models.Model):
     partner_image = fields.Binary(
         string='Jefe de grupo',
         related='partner_id.photo')
+    registration_number = fields.Char(
+        string='Número de registro',
+        related='partner_id.registration_number',
+        store=True)
     
