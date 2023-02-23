@@ -7,18 +7,15 @@ from ..settings import *
 class UnedlLoan(models.Model):
     _inherit = 'unedl.loan'
 
-    def write(self, vals):
-        if any(item.loan_quantity > item.available_quantity for item in self.line_ids):
-            raise UserError("No es posible guardar un préstamo con piezas mayores a las disponibles")
-        res = super(UnedlLoan, self).write(vals)
-        return res
-
     @api.constrains('state')
     def _constrains_state(self):
         for record in self:
             if record.state == PROCESS:
                 if any(item.loan_quantity == 0 for item in record.line_ids):
                     raise UserError("Para continuar a proceso debes seleccionar al menos una pieza a préstamo")
+
+                if any(item.available_quantity < 0 for item in self.line_ids):
+                    raise UserError("No es posible guardar un préstamo con piezas mayores a las disponibles")
                 
                 if any(item.loan_quantity < 0 for item in record.line_ids):
                     raise UserError("No es posible guardar un préstamo con piezas negativas")
